@@ -3,11 +3,12 @@ import logging
 from biothings.utils.dataload import dict_sweep
 
 FILE_NOT_FOUND_ERROR = 'Cannot find input file: {}'  # error message constant
-FILE_LINES = 8360396
+# FILE_LINES = 8360396
+FILE_LINES = 16
 
 # change following parameters accordingly
 source_name = 'ccr'  # source name that appears in the api response
-file_name = 'ccrs.xchrom.v2.20180420.bed'  # sample file
+file_name = 'test'  # sample file
 delimiter = '\t'  # the delimiter that separates each field
 
 # configure logger
