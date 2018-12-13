@@ -39,9 +39,12 @@ def load_data(data_folder: str):
             count += 1
             # schema: (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density,
             #          cpg, cov_score, resid, resid_pctile, unique_key)
-
-            (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density, cpg,
-                cov_score, resid, resid_pctile, unique_key) = line.strip().split(delimiter)
+            try:
+                (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density, cpg,
+                    cov_score, resid, resid_pctile, unique_key) = line.strip().split(delimiter)
+            except ValueError:
+                logger.error(f'failed to unpack data: {line}')
+                continue    # skip error line
             _id = f'chr{chrom}:g.{start}_{end}'
             # enforce data type
             variant = {
