@@ -40,6 +40,8 @@ def load_data(data_folder: str):
             # read and parse each line into a dict
             # schema: (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density,
             #          cpg, cov_score, resid, resid_pctile, unique_key)
+
+            logger.info(f'reading line: {line}')
             (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density, cpg,
                 cov_score, resid, resid_pctile, unique_key) = line.strip().split(delimiter)
             _id = f'chr{chrom}:g.{start}_{end}'
