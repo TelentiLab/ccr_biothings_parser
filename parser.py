@@ -34,17 +34,14 @@ def load_data(data_folder: str):
     with open(input_file, 'r') as file:
         logger.info(f'start reading file: {file_name}')
         count = 0
-        for line in file:
+        for line in file:   # read and parse each line into a dict
             logger.info(f'reading line {count} ({(count / FILE_LINES * 100):.2f}%)')  # format to use 2 decimals
             count += 1
-            # read and parse each line into a dict
             # schema: (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density,
             #          cpg, cov_score, resid, resid_pctile, unique_key)
 
-            logger.info(f'reading line: {line}')
             (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density, cpg,
                 cov_score, resid, resid_pctile, unique_key) = line.strip().split(delimiter)
-            logger.info(f'data: {line.strip().split(delimiter)}')
             _id = f'chr{chrom}:g.{start}_{end}'
             # enforce data type
             variant = {
