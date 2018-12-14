@@ -43,7 +43,7 @@ def load_data(data_folder: str):
                 (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density, cpg,
                     cov_score, resid, resid_pctile, unique_key) = line.strip().split(delimiter)
             except ValueError:
-                logger.error(f'failed to unpack data: {line}')
+                logger.error(f'failed to unpack line {count}: {line}')
                 continue    # skip error line
             _id = f'chr{chrom}:g.{start}_{end}'
             # enforce data type
@@ -66,11 +66,10 @@ def load_data(data_folder: str):
             except ValueError as e:
                 logger.error(f'failed to cast type for line {count}: {e}')
                 continue  # skip error line
-            # remove empty fields
-            variant = dict_sweep(variant, vals=['', 'null', 'N/A', None, [], {}])
-            # commit an entry by yielding
-            yield {
+
+            variant = dict_sweep(variant, vals=['', 'null', 'N/A', None, [], {}])   # remove empty fields
+
+            yield {  # commit an entry by yielding
                 "_id": _id,
                 source_name: variant
             }
-        logger.info(f'parsing completed, {count} lines read')
