@@ -1,5 +1,5 @@
 {
-    "version": "0.1",
+    "version": "0.2",
     "dumper" : {
         "data_url" : "http://localhost:8080/data/ccrs.xchrom.v2.20180420.bed.gz",
         "uncompress" : true
