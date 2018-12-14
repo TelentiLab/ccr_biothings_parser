@@ -47,21 +47,25 @@ def load_data(data_folder: str):
                 continue    # skip error line
             _id = f'chr{chrom}:g.{start}_{end}'
             # enforce data type
-            variant = {
-                'chrom': chrom,
-                'start': int(start),
-                'end': int(end),
-                'ccr_pct': float(ccr_pct),
-                'gene': gene,
-                'ranges': ranges.split(','),
-                'varflag': varflag is 'VARTRUE',
-                'syn_density': float(syn_density),
-                'cpg': float(cpg),
-                'cov_score': float(cov_score),
-                'resid': float(resid),
-                'resid_pctile': float(resid_pctile),
-                'unique_key': int(unique_key),
-            }
+            try:
+                variant = {
+                    'chrom': chrom,
+                    'start': int(start),
+                    'end': int(end),
+                    'ccr_pct': float(ccr_pct),
+                    'gene': gene,
+                    'ranges': ranges.split(','),
+                    'varflag': varflag is 'VARTRUE',
+                    'syn_density': float(syn_density),
+                    'cpg': float(cpg),
+                    'cov_score': float(cov_score),
+                    'resid': float(resid),
+                    'resid_pctile': float(resid_pctile),
+                    'unique_key': int(unique_key),
+                }
+            except ValueError as e:
+                logger.error(f'failed to cast type for line {count}: {e}')
+                continue  # skip error line
             # remove empty fields
             variant = dict_sweep(variant, vals=['', 'null', 'N/A', None, [], {}])
             # commit an entry by yielding
