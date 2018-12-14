@@ -45,12 +45,11 @@ def load_data(data_folder: str):
             except ValueError:
                 logger.error(f'failed to unpack line {count}: {line}')
                 continue    # skip error line
-            chrom = chrom.strip()
-            _id = f'chr{chrom}:g.{start}_{end}'
+            _id = str(f'chr{chrom}:g.{start}_{end}')
             # enforce data type
             try:
                 variant = {
-                    'chrom': chrom,
+                    'chrom': str(chrom),
                     'start': int(start),
                     'end': int(end),
                     'ccr_pct': float(ccr_pct),
