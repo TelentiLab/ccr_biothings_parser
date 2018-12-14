@@ -4,7 +4,7 @@ from biothings.utils.dataload import dict_sweep
 
 FILE_NOT_FOUND_ERROR = 'Cannot find input file: {}'  # error message constant
 # FILE_LINES = 8360396
-FILE_LINES = 171986
+FILE_LINES = 171679
 
 # change following parameters accordingly
 source_name = 'ccr'  # source name that appears in the api response
@@ -45,6 +45,7 @@ def load_data(data_folder: str):
             except ValueError:
                 logger.error(f'failed to unpack line {count}: {line}')
                 continue    # skip error line
+            chrom = chrom.strip()
             _id = f'chr{chrom}:g.{start}_{end}'
             # enforce data type
             try:
