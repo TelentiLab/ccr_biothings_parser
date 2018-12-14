@@ -9,6 +9,6 @@
     },
     "uploader" : {
         "parser" : "parser:load_data",
-        "on_duplicates" : "merge"
+        "on_duplicates" : "ignore"
     }
 }
