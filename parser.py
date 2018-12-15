@@ -36,6 +36,7 @@ def load_data(data_folder: str):
     with open(input_file, 'r') as file:
         logger.info(f'start reading file: {file_name}')
         count = 0
+        skipped = []
         for line in file:   # read and parse each line into a dict
             logger.info(f'reading line {count} ({(count / FILE_LINES * 100):.2f}%)')  # format to use 2 decimals
             count += 1
@@ -46,6 +47,7 @@ def load_data(data_folder: str):
                     cov_score, resid, resid_pctile, unique_key) = line.strip().split(delimiter)
             except ValueError:
                 logger.error(f'failed to unpack line {count}: {line}')
+                skipped.append(line)
                 continue    # skip error line
             _id = f'chr{chrom}:g.{start}_{end}'
             # enforce data type
@@ -67,6 +69,7 @@ def load_data(data_folder: str):
                 }
             except ValueError as e:
                 logger.error(f'failed to cast type for line {count}: {e}')
+                skipped.append(line)
                 continue  # skip error line
 
             variant = dict_sweep(variant, vals=['', 'null', 'N/A', None, [], {}])   # remove empty fields
@@ -75,3 +78,6 @@ def load_data(data_folder: str):
                 "_id": _id,
                 source_name: variant
             }
+        logger.info(f'parse completed, {len(skipped)}/{count} lines skipped.')
+        for x in skipped:
+            logger.info(f'skipped line: {x}')
