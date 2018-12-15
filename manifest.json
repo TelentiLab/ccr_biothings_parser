@@ -4,11 +4,11 @@
         "url" : "https://www.nature.com/articles/s41588-018-0294-6"
     },
     "dumper" : {
-        "data_url" : "http://localhost:8080/data/ccrs.xchrom.v2.20180420.bed.gz",
+        "data_url" : "http://localhost:8080/data/ccrs.autosomes.v2.20180420.bed.gz",
         "uncompress" : true
     },
     "uploader" : {
         "parser" : "parser:load_data",
-        "on_duplicates" : "ignore"
+        "on_duplicates" : "merge"
     }
 }
