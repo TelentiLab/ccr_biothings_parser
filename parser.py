@@ -1,5 +1,7 @@
 import os
 import logging
+import datetime
+import time
 from biothings.utils.dataload import dict_sweep
 
 FILE_NOT_FOUND_ERROR = 'Cannot find input file: {}'  # error message constant
@@ -34,7 +36,7 @@ def load_data(data_folder: str):
     :param data_folder: the path(folder) where the data file is stored
     :return: a generator that yields data.
     """
-    for file_name, lines in _files:
+    for file_name, file_lines in _files:
         input_file = os.path.join(data_folder, file_name)
         # raise an error if file not found
         if not os.path.exists(input_file):
@@ -42,12 +44,18 @@ def load_data(data_folder: str):
             raise FileExistsError(FILE_NOT_FOUND_ERROR.format(input_file))
 
         with open(input_file, 'r') as file:
+            start_time = time.time()
             logger.info(f'start reading file: {file_name}')
             count = 0
             skipped = []
             for line in file:   # read and parse each line into a dict
-                logger.info(f'reading line {count} ({(count / lines * 100):.2f}%)')  # format to use 2 decimals
                 count += 1
+                ratio = count / file_lines
+                time_left = datetime.timedelta(seconds=(time.time() - start_time) * (1 - ratio) / ratio)
+                # format to use 2 decimals for progress
+                logger.info(
+                    f'reading line {count} ({(count / file_lines * 100):.2f}%), estimated time left: {time_left}')
+
                 # schema: (chrom, start, end, ccr_pct, gene, ranges, varflag, syn_density,
                 #          cpg, cov_score, resid, resid_pctile, unique_key)
                 try:
