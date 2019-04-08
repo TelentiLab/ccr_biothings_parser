@@ -4,8 +4,12 @@
         "url" : "https://www.nature.com/articles/s41588-018-0294-6"
     },
     "dumper" : {
-        "data_url" : "http://localhost:8080/data/ccrs.full.v2.20180420.bed.gz",
-        "uncompress" : true
+        "data_url" : [
+            "http://localhost:8080/data/ccrs.autosomes.v2.20180420.bed.gz",
+            "http://localhost:8080/data/ccrs.xchrom.v2.20180420.bed.gz"
+        ],
+        "uncompress" : true,
+        "release": "parser:version"
     },
     "uploader" : {
         "parser" : "parser:load_data",
