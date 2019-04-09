@@ -75,7 +75,7 @@ def load_data(data_folder: str):
                         'ccr_pct': float(ccr_pct),
                         'gene': gene,
                         'ranges': ranges.split(','),
-                        'varflag': varflag is 'VARTRUE',
+                        'varflag': [each is 'VARTRUE' for each in varflag.split(',')],
                         'syn_density': float(syn_density),
                         'cpg': float(cpg),
                         'cov_score': float(cov_score),
