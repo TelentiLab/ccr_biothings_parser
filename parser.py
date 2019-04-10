@@ -2,7 +2,6 @@ import os
 import logging
 import datetime
 import time
-from biothings.utils.dataload import dict_sweep
 
 FILE_NOT_FOUND_ERROR = 'Cannot find input file: {}'  # error message constant
 
@@ -72,23 +71,25 @@ def load_data(data_folder: str):
                         'chrom': chrom,
                         'start': int(start),
                         'end': int(end),
-                        'ccr_pct': float(ccr_pct),
-                        'gene': gene,
-                        'ranges': ranges.split(','),
-                        'varflag': [each is 'VARTRUE' for each in varflag.split(',')],
-                        'syn_density': float(syn_density),
-                        'cpg': float(cpg),
-                        'cov_score': float(cov_score),
-                        'resid': float(resid),
-                        'resid_pctile': float(resid_pctile),
-                        'unique_key': int(unique_key),
+                        'scores': [
+                            {
+                                'ccr_pct': float(ccr_pct),
+                                'gene': gene,
+                                'ranges': ranges.split(','),
+                                'varflag': [each is 'VARTRUE' for each in varflag.split(',')],
+                                'syn_density': float(syn_density),
+                                'cpg': float(cpg),
+                                'cov_score': float(cov_score),
+                                'resid': float(resid),
+                                'resid_pctile': float(resid_pctile),
+                                'unique_key': int(unique_key),
+                            }
+                        ]
                     }
                 except ValueError as e:
                     logger.error(f'failed to cast type for line {count}: {e}')
                     skipped.append(line)
                     continue  # skip error line
-
-                variant = dict_sweep(variant, vals=['', 'null', 'N/A', None, [], {}])   # remove empty fields
 
                 yield {  # commit an entry by yielding
                     "_id": _id,

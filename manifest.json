@@ -13,6 +13,6 @@
     },
     "uploader" : {
         "parser" : "parser:load_data",
-        "on_duplicates" : "error"
+        "on_duplicates" : "merge"
     }
 }
