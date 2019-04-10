@@ -11,16 +11,20 @@ This repo stems from the **biothings-data-parser-sample** code, and is used to p
         "chrom": "1",
         "start": 865645,
         "end": 865660,
-        "ccr_pct": 91.316325156,
-        "gene": "AL645608.1",
-        "ranges": ["865645-865660","865665-865682"],
-        "varflag": [false, false],
-        "syn_density": 0.062,
-        "cpg": 0.000,
-        "cov_score": 30.580,
-        "resid": 3.430,
-        "resid_pctile": 11.335235448,
-        "unique_key": 47070
+        "scores": [
+          {
+            "ccr_pct": 91.316325156,
+            "gene": "AL645608.1",
+            "ranges": ["865645-865660","865665-865682"],
+            "varflag": [false, false],
+            "syn_density": 0.062,
+            "cpg": 0.000,
+            "cov_score": 30.580,
+            "resid": 3.430,
+            "resid_pctile": 11.335235448,
+            "unique_key": 47070
+          }
+        ]
     }
 }
 ```
