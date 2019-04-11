@@ -6,8 +6,8 @@ This repo stems from the **biothings-data-parser-sample** code, and is used to p
 
 ```json
 {
-    "_id": "chr10:g.1046704C>T",
-    "primate_ai": {
+    "_id": "chr1:g.865645_865660",
+    "ccr": {
         "chrom": "1",
         "start": 865645,
         "end": 865660,
