@@ -5,8 +5,8 @@
     },
     "dumper" : {
         "data_url" : [
-            "http://localhost:8080/data/ccrs.autosomes.v2.20180420.bed.gz",
-            "http://localhost:8080/data/ccrs.xchrom.v2.20180420.bed.gz"
+            "https://s3.us-east-2.amazonaws.com/ccrs/ccrs/ccrs.autosomes.v2.20180420.bed.gz",
+            "https://s3.us-east-2.amazonaws.com/ccrs/ccrs/ccrs.xchrom.v2.20180420.bed.gz"
         ],
         "uncompress" : true,
         "release": "parser:version"
