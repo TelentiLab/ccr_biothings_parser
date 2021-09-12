@@ -29,6 +29,12 @@ This repo stems from the **biothings-data-parser-sample** code, and is used to p
 }
 ```
 
+Detailed field annotation can be found at [https://github.com/quinlan-lab/ccr#bed-file-columns](https://github.com/quinlan-lab/ccr#bed-file-columns).
+
+# Results
+
+If uploaded correctly, the BioThings studio should report 8,289,870 documents for the current data source (v2.20180420).
+
 # Acknowledgement
 
-All data acquired from Quinlan Lab at [https://github.com/quinlan-lab/ccr](https://github.com/quinlan-lab/ccr).
+All data are downloaded from Quinlan Lab at [https://github.com/quinlan-lab/ccr](https://github.com/quinlan-lab/ccr).
